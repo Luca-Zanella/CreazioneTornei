@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <title>League</title>
+</head>
+<body>
+    <h3 class="text-center p-1">Creazione delle squadre</h3>
+    <div class="container">
+        <div class="row">
+            {% for i in range(team_n)%} 
+                <!--<input class="col-sm-4" placeholder="crea la tua squadra"></input>-->
+                <div class="card col-lg-6">
+                    <div class="card-body">
+                        <input type="text" placeholder="nome della squadra" class="input-group">
+                        <input type="submit" placeholder="check" class="input-group">
+                        <input type="text" placeholder="Inserisci giocatori" class="input-group">
+                        <input type="submit" placeholder="inserisci" class="input-group text-center">
+                        <div style="text-align: center;" class="m-1">
+                            <a href="#" class="btn btn-success" role="button">Done</a>
+                            <a href="#" class="btn btn-danger" role="button">Cancel</a>
+                        </div>
+                    </div>
+                  </div>
+            {% endfor %}
+        </div>
+       
+      
+    </div>
+</body>
+</html>
