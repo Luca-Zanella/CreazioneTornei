@@ -18,6 +18,12 @@ def index():
 @app.route("/league")
 def league():
     team_n = int(numero_squadre)
+
+
+    information = request.data
+    print(information)
+
+
     return render_template("league.html",team_n = team_n)
 
 if __name__ == '__main__':

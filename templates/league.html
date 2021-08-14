@@ -5,30 +5,124 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <title>League</title>
+
+    <style>
+        li{
+            background-color: antiquewhite;
+        }
+
+        ul,li{
+            margin: 0; padding: 0;
+        }
+    </style>
+
 </head>
 <body>
-    <h3 class="text-center p-1">Creazione delle squadre</h3>
-    <div class="container">
+
+    <script>
+        var arr;
+
+        function check_function(){
+            arr = $('input[name=nome_squadra]').map(function(){
+                return this.value;
+            }).get();
+            console.log(arr);   
+        
+        }
+        /**/
+        var myNodelist = document.getElementsByTagName("LI");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+        }
+
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+        }
+
+
+        /**/
+        function add_list(i){
+
+            var myUL = document.getElementById("myUL"+i);
+            var myInput = $('input[name=myInput'+i+']'); 
+
+            var li = document.createElement("li");
+            var lol = myInput.map(function(){
+                return this.value;
+            }).get();
+            console.log(lol)
+            var t = document.createTextNode(lol);
+            li.appendChild(t);
+            if (lol == "") {
+                alert("You must write something!");
+            } else {
+                myUL.append(li);
+            }
+            myInput.val("");
+
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+
+            for (i = 0; i < close.length; i++) {
+            close[i].onclick = function() {
+                var div = this.parentElement;
+                div.style.display = "none";
+                }
+            }
+        }
+    
+    </script>
+
+    <h3 class="text-center p-1" style="font-family: 'Montserrat', sans-serif;">Creazione delle squadre</h3>
+    <div class="container" style="font-family: 'Montserrat', sans-serif;">
         <div class="row">
-            {% for i in range(team_n)%} 
-                <!--<input class="col-sm-4" placeholder="crea la tua squadra"></input>-->
-                <div class="card col-lg-6">
-                    <div class="card-body">
-                        <input type="text" placeholder="nome della squadra" class="input-group">
-                        <input type="submit" placeholder="check" class="input-group">
-                        <input type="text" placeholder="Inserisci giocatori" class="input-group">
-                        <input type="submit" placeholder="inserisci" class="input-group text-center">
-                        <div style="text-align: center;" class="m-1">
-                            <a href="#" class="btn btn-success" role="button">Done</a>
-                            <a href="#" class="btn btn-danger" role="button">Cancel</a>
-                        </div>
+            {% for i in range(team_n)%}
+                <div class="card col-lg-6" id="bg{{i}}">
+                    <div class="card-body">  
+                            <input type="text" placeholder="nome della squadra" class="input-group" name="nome_squadra">
+                            <input type="text" placeholder="Inserisci giocatori" class="input-group" name="myInput{{i}}">
+
+                            <div class="text-center">
+                                <input type="submit" value="Add" class="btn btn-info m-2 col-sm-4 mx-auto" role="button" onclick="add_list('{{i}}')">
+                            </div>
+
+                            <ul id="myUL{{i}}" style="list-style: none; font-family: 'Montserrat', sans-serif;">
+                            </ul>
+
+                            <div style="text-align: center;" class="m-1">
+                                <a href="#" class="btn btn-success" role="button">Done</a>
+                                <a href="#" class="btn btn-danger" role="button">Cancel</a>
+                            </div> 
                     </div>
                   </div>
             {% endfor %}
         </div>
-       
-      
+
+        
+        <div style="text-align: center;" class="m-3">
+            <input type="submit" class="btn btn-info" role="button" id="final-btn" onclick="check_function()">
+        </div>
     </div>
+
 </body>
 </html>
