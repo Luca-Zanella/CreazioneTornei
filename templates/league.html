@@ -26,15 +26,26 @@
 <body>
 
     <script>
+        
         var arr;
 
         function check_function(){
+            
             arr = $('input[name=nome_squadra]').map(function(){
                 return this.value;
             }).get();
-            console.log(arr);   
-        
+            console.log(arr);
+            
+            const URL = '/league'
+            const xhr = new XMLHttpRequest();
+            //x l'andiamo ad assegnare globalmente in js e l'assegnamo a getLatLng nei waypoints
+            sender = JSON.stringify(arr)
+            xhr.open('POST', URL);
+            //la mandiamo all'url
+            xhr.send(sender);
         }
+
+
         /**/
         var myNodelist = document.getElementsByTagName("LI");
         var i;
@@ -90,7 +101,7 @@
                 }
             }
         }
-    
+
     </script>
 
     <h3 class="text-center p-1" style="font-family: 'Montserrat', sans-serif;">Creazione delle squadre</h3>
