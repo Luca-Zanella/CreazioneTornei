@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -19,6 +18,18 @@
 
         ul,li{
             margin: 0; padding: 0;
+        }
+
+        .changeStatus{
+            width: 100%;
+            background-color: #85d724;
+            pointer-events:none;
+        }
+        .clearStatus{
+            pointer-events: all;
+            width: 100%;
+            background-color:#fff;
+            
         }
     </style>
 
@@ -102,10 +113,22 @@
             }
         }
 
+
+        
+        function change_status(i){
+            document.getElementById('bg'+i).setAttribute("class","changeStatus");
+        }
+
+        function clear_status(i){
+            document.getElementById('bg'+i).setAttribute("class","clearStatus");
+        }
+        
+        
+
     </script>
 
     <h3 class="text-center p-1" style="font-family: 'Montserrat', sans-serif;">Creazione delle squadre</h3>
-    <div class="container" style="font-family: 'Montserrat', sans-serif;">
+    <div class="container" style="font-family: 'Montserrat', sans-serif;" >
         <div class="row">
             {% for i in range(team_n)%}
                 <div class="card col-lg-6" id="bg{{i}}">
@@ -121,8 +144,8 @@
                             </ul>
 
                             <div style="text-align: center;" class="m-1">
-                                <a href="#" class="btn btn-success" role="button">Done</a>
-                                <a href="#" class="btn btn-danger" role="button">Cancel</a>
+                                <a href="#" class="btn btn-success shadow-lg" role="button" id="btn_status" onclick="change_status('{{i}}')">Done</a>
+                                <a href="#" class="btn btn-danger shadow-lg" role="button" id="clear_status" onclick="clear_status('{{i}}')">Cancel</a>
                             </div> 
                     </div>
                   </div>

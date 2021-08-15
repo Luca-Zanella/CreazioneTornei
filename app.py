@@ -22,12 +22,10 @@ def index():
 def league():
     team_n = int(numero_squadre)
     information = request.data.decode('utf-8')
-    #print(information)
-    #print(type(information))
-
+    
     if information != "":
         information = json.loads(information)
-        #information = np.array(information)
+        
         set_size = 2
         schedule = set()
         teams = information
